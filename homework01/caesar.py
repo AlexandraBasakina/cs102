@@ -33,11 +33,12 @@ def decrypt_caesar(ciphertext):
     >>> decrypt_caesar("")
     ''
     """
-    for i in range (len(ciphertext)):
-        znach=ord(ciphertext[i])
-        if znach >= 68 and znach <= 90 or znach >= 100 and znach <= 122:
-            znach -= 3
-        elif znach >= 65 and znach <= 67 or znach >= 97 and znach <= 99:
-            znach += 23
-        print(chr(znach), end='')
-    return chr(32)
+    plaintext = ''
+    for ch in ciphertext:
+        code = ord(ch)
+        if 'd' <= ch < 'z' or 'D' <= ch < 'Z':
+            code -= 3
+        elif 'a' <= ch <= 'c' or 'A' <= ch <= 'C':
+            code += 23
+        plaintext += chr(code)
+    return plaintext
