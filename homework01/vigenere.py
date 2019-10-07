@@ -23,9 +23,10 @@ def encrypt_vigenere(plaintext, keyword):
     for ch, k in zip(list(plaintext), list(keyword)):
         if ord(ch) + ord(k) - code_A > code_Z:
             ch = chr((ord(ch)) - 26)
+        ciphertext = ''
         ciphertext += chr(ord(ch) + (ord(k) - code_A))
     return ciphertext
-    
+
 
 def decrypt_vigenere(ciphertext, keyword):
     """
@@ -52,6 +53,6 @@ def decrypt_vigenere(ciphertext, keyword):
     for ch, k in zip(list(ciphertext), list(keyword)):
         if (ord(ch) < ord(k)):
             ch = chr(ord(ch) + 26)
+        plaintext = ''
         plaintext += chr(ord(ch) - (ord(k) - code_A))
     return plaintext
- 
