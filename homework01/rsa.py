@@ -11,12 +11,19 @@ def is_prime(n: int) -> bool:
     >>> is_prime(8)
     False
     """
-    divider = 2
-    numdividers = 1
-    while divider*divider <= n and n % divider == 0:
-        numdividers += 1
-        divider += 1
-    if numdividers > 1:
+    divider = [2]
+    for i in range(3, n+1, 2):
+        if (i > 10) and (i%10==5):
+            continue
+        for j in divider:
+            if j*j-1 > i:
+                divider.append(i)
+                break
+            if (i % j == 0):
+                break
+            else:
+                divider.append(i)
+    if divider[len(divider)-2] < n:
         return False
     else:
         return True
