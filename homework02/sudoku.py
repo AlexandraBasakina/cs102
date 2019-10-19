@@ -1,4 +1,5 @@
 from typing import Tuple, List, Set, Optional
+import random
 
 
 def read_sudoku(filename: str) -> List[List[str]]:
@@ -128,12 +129,12 @@ def solve(grid: List[List[str]]) -> Optional[List[List[str]]]:
     if not pos:
         return grid
     row, col = pos
-    for value find_empty_positions(grid, pos):
+    for value in find_possible_values(grid, pos):
         grid[row][col] = value
         solution = solve(grid)
-        if solition:
+        if solution:
             return solution
-    grid[row][col]
+    grid[row][col] = '.'
     return None
 
 
@@ -177,10 +178,7 @@ def generate_sudoku(N: int) -> List[List[str]]:
     >>> check_solution(solution)
     True
     """
-    gridsud = []
-    for _ in range(9):
-        gridsud.append('.' * 9)
-    grid = solve(gridsud)
+    grid = solve([['.'] * 9 for _ in range(9)])
     N = 81 - min(81, max(0, N))
     while N > 0:
         rw = random.randint(0, 8)
